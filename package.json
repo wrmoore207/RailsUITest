@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+    "build:css:watch": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.2"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.13",
+    "@rails/actiontext": "^8.0.200",
+    "apexcharts": "^4.5.0",
+    "railsui-stimulus": "^1.0.8",
+    "stimulus-use": "^0.52.3",
+    "trix": "^2.1.13"
+  }
+}
