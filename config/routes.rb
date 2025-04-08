@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "resources/new"
+  get "resources/create"
+  resources :events
   get "mock_login", to: "sessions#mock", as: :mock_login
   delete "logout", to: "sessions#destroy", as: :logout
 
@@ -7,7 +10,12 @@ Rails.application.routes.draw do
   get "home", to: "pages#home"
 
   # Top-level calendar route
-  get "calendar", to: "pages#calendar"
+  # get "calendar", to: "pages#calendar"
+  # resources :events
+  get "calendar", to: "events#calendar"
+  get "calendar/events_on_date", to: "events#on_date"
+
+
 
   # Messages Page
   get "messages", to: "pages#messages"
@@ -16,7 +24,9 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile"
 
   # Resource List
-  get "resource_list", to: "pages#resource_list"
+  get 'resource_list', to: 'pages#resource_list', as: 'resource_list'
+  resources :resources
+
 
   # RailsUI engine (development only)
   if Rails.env.development?

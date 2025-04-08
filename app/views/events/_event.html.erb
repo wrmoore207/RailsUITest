@@ -1,0 +1,9 @@
+<article id="<%= dom_id event %>" class="py-6 prose dark:prose-invert">
+  <p><strong>Title:</strong> <%= event.title %></p>
+  <p><strong>Date:</strong> <%= event.date.strftime("%B %d, %Y") %> at <%= event.time %></p>
+  <p><strong>Location:</strong> <%= event.location %></p>
+  <p><strong>Description:</strong> <%= event.description %></p>
+  <time class="text-slate-600 text-xs">
+    Created <%= time_ago_in_words(event.created_at) %> ago
+  </time>
+</article>

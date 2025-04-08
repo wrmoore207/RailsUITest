@@ -1,0 +1,9 @@
+<div class="max-w-3xl mx-auto px-4 my-16">
+  <%= render @event %>
+
+  <div class="mt-6">
+    <%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-light" %>
+    <%= link_to "Back to events", events_path, class: "ml-4 text-sm underline" %>
+    <%= button_to "Delete", @event, method: :delete, class: "ml-4 text-sm text-red-600 underline", data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+</div>

@@ -3,6 +3,8 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import RailsuiModalController from "./railsui/railsui_modal_controller.js"
+application.register("railsui-modal", RailsuiModalController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

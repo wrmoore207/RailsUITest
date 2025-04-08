@@ -1,0 +1,18 @@
+<%= form_with(model: event, local: true) do |f| %>
+  <div class="mb-4">
+    <%= f.label :title, class: "block text-sm font-medium" %>
+    <%= f.text_field :title, class: "form-input w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :date, class: "block text-sm font-medium" %>
+    <%= f.datetime_select :date, class: "form-input w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, class: "block text-sm font-medium" %>
+    <%= f.text_area :description, class: "form-textarea w-full" %>
+  </div>
+
+  <%= f.submit "Save Event", class: "btn btn-primary" %>
+<% end %>

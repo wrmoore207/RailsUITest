@@ -1,0 +1,4 @@
+<h1>Resources#create</h1>
+<p>Find me in app/views/resources/create.html.erb</p>
+<%= turbo_stream.prepend "resource_table", partial: "resources/resource_row", locals: { resource: @resource } %>
+<%= turbo_stream.update "new_resource_modal", "" %> <!-- Close the modal -->
