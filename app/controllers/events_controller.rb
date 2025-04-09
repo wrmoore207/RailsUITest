@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /calendar
   def calendar
     @events = Event.all.order(:date)
-    
+
     @today = Date.current
     @month = params[:month]&.to_i || @today.month
     @year = params[:year]&.to_i || @today.year
@@ -26,26 +26,49 @@ class EventsController < ApplicationController
   def show
   end
 
-  # GET /events/new
-  def new
-    @event = Event.new
-  end
-
   # GET /events/1/edit
   def edit
   end
 
+  def new
+    @event = Event.new
+    respond_to do |format|
+      format.html do
+        if turbo_frame_request?
+          render partial: "events/form_modal", locals: { event: @event }
+        else
+          render :new
+        end
+      end
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          "new_event_modal",
+          partial: "events/form_modal",
+          locals: { event: @event }
+        )
+      end
+    end
+  end
+  
+
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: "Event was successfully created." }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if @event.save
+      respond_to do |format|
+        format.html { redirect_to events_path, notice: "Event was successfully created." }
+        format.turbo_stream # invokes create.turbo_stream.erb
+      end
+    else
+      respond_to do |format|
+        format.html { render :new }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "new_event_modal",
+            partial: "events/form_modal",
+            locals: { event: @event }
+          )
+        end
       end
     end
   end
@@ -75,10 +98,12 @@ class EventsController < ApplicationController
 
   private
 
+  # Set event for actions requiring an existing event
   def set_event
     @event = Event.find(params[:id])
   end
 
+  # Only allow a list of trusted parameters
   def event_params
     params.require(:event).permit(:title, :description, :date, :time, :location)
   end

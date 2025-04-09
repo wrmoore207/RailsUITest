@@ -6,12 +6,10 @@
     </div>
   </div>
 
-  <div id="events" class="divide-y divide-slate-200/90 dark:divide-slate-700 mb-10">
-    <% @events.each do |event| %>
-      <div class="py-3">
-        <%= render event %>
-        <%= link_to "View Event", event, class: "btn-link my-3 inline-block" %>
-      </div>
-    <% end %>
-  </div>
+  <div id="events" class="divide-y divide-slate-200 dark:divide-slate-700 mb-10">
+  <% @events.each do |event| %>
+    <%= render event %>
+  <% end %>
+</div>
+
 </div>

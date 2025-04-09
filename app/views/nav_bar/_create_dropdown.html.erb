@@ -7,13 +7,21 @@
   <ul data-railsui-dropdown-target="menu"
   class="hidden transition origin-top-right absolute right-0 top-14 bg-white rounded-lg shadow-xl z-50 py-2 w-52 border dark:bg-slate-800 dark:border-slate-700 dark:text-white">
 
-  <li>
-    <%= link_to new_event_path,
-      class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2" do %>
+    <li>
+    <%= link_to "#",
+        data: {
+          controller: "railsui-modal",
+          action: "click->railsui-modal#open",
+          railsui_modal_url_value: new_event_path,
+          railsui_modal_name_value: "new_event_modal"
+        },
+        class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2" do %>
       <%= icon "calendar", class: "size-5 text-slate-500" %>
       <span>New Event</span>
     <% end %>
   </li>
+  
+  
 
   <li>
     <%= link_to "#",

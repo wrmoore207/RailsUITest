@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "events", partial: "events/event", locals: { event: @event } %>
+<%= turbo_stream.update "new_event_modal", "" %>

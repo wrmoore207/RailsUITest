@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  
-    <title><%= content_for(:title) || "Rui Test" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title><%= content_for(:title) || "Rui Test" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+  <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", src: asset_path("application.js") %>
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", src: asset_path("application.js") %>
-  
-    <%= railsui_head %>
+  <%= railsui_head %>
 </head>
 
 <body>
+  <!-- Global navbar -->
   <%= render "nav_bar/nav" %>
 
-  <%= yield %>
-
-  <!-- 🔽 Custom modal turbo frame mount -->
+  <!-- Global modals -->
+  <%= render "resources/form_modal" %>
+  <%= render "events/form_modal" %>
   <turbo-frame id="new_message_modal"></turbo-frame>
 
-  <%= railsui_launcher if Rails.env.development? %>
-
+  <!-- User/session info -->
   <% if session[:user_info] %>
     <div class="text-sm text-slate-600 dark:text-slate-300 mb-4">
       Logged in as <strong><%= session[:user_info][:name] %></strong>
@@ -45,6 +40,11 @@
   <% else %>
     <%= link_to "Mock Sign In", mock_login_path, class: "text-blue-600 hover:underline mb-4 inline-block" %>
   <% end %>
-</body>
 
+  <!-- Development launcher (if needed) -->
+  <%= railsui_launcher if Rails.env.development? %>
+
+  <!-- Main content -->
+  <%= yield %>
+</body>
 </html>

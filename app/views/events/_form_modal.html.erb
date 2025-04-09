@@ -1,0 +1,36 @@
+<turbo-frame id="new_event_modal">
+  <% if defined?(event) && event.present? %>
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" data-controller="railsui-modal">
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700">
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">New Event</h2>
+
+        <%= form_with model: event, url: events_path, method: :post, data: { turbo_frame: "new_event_modal" } do |f| %>
+          <div class="mb-4">
+            <%= f.label :title, class: "block text-sm font-medium" %>
+            <%= f.text_field :title, class: "form-input w-full" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :date, class: "block text-sm font-medium" %>
+            <%= f.datetime_select :date, class: "form-input w-full" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :location, class: "block text-sm font-medium" %>
+            <%= f.text_field :location, class: "form-input w-full" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :description, class: "block text-sm font-medium" %>
+            <%= f.text_area :description, class: "form-textarea w-full" %>
+          </div>
+
+          <div class="mt-6 flex justify-end gap-3">
+            <%= button_to "Cancel", "#", class: "btn btn-secondary", data: { action: "click->railsui-modal#close" }, method: :get %>
+            <%= f.submit "Create", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>
