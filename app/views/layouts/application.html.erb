@@ -25,23 +25,26 @@
     <%= railsui_head %>
 </head>
 
-  <body>
-    <%= render "nav_bar/nav" %>
+<body>
+  <%= render "nav_bar/nav" %>
 
-    <%= yield %>
-  
-    <%= railsui_launcher if Rails.env.development? %>
+  <%= yield %>
 
-    <% if session[:user_info] %>
-  <div class="text-sm text-slate-600 dark:text-slate-300 mb-4">
-    Logged in as <strong><%= session[:user_info][:name] %></strong>
-    (<%= session[:user_info][:email] %>)
-    |
-    <%= link_to "Logout", logout_path, method: :delete, class: "text-red-500 hover:underline" %>
-  </div>
-<% else %>
-  <%= link_to "Mock Sign In", mock_login_path, class: "text-blue-600 hover:underline mb-4 inline-block" %>
-<% end %>
+  <!-- 🔽 Custom modal turbo frame mount -->
+  <turbo-frame id="new_message_modal"></turbo-frame>
 
+  <%= railsui_launcher if Rails.env.development? %>
+
+  <% if session[:user_info] %>
+    <div class="text-sm text-slate-600 dark:text-slate-300 mb-4">
+      Logged in as <strong><%= session[:user_info][:name] %></strong>
+      (<%= session[:user_info][:email] %>)
+      |
+      <%= link_to "Logout", logout_path, method: :delete, class: "text-red-500 hover:underline" %>
+    </div>
+  <% else %>
+    <%= link_to "Mock Sign In", mock_login_path, class: "text-blue-600 hover:underline mb-4 inline-block" %>
+  <% end %>
 </body>
+
 </html>

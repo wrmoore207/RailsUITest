@@ -5,16 +5,17 @@
   </button>
 
   <ul data-railsui-dropdown-target="menu"
-    class="hidden transition origin-top-right absolute right-0 top-14 bg-white rounded-lg shadow-xl z-50 py-2 w-52 border dark:bg-slate-800 dark:border-slate-700 dark:text-white">
-    
-    <li>
-      <%= link_to new_event_path, class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 block" do %>
-        <%= icon "calendar", class: "size-5 mr-2 text-slate-500" %>
-        New Event
-      <% end %>
-    </li>
+  class="hidden transition origin-top-right absolute right-0 top-14 bg-white rounded-lg shadow-xl z-50 py-2 w-52 border dark:bg-slate-800 dark:border-slate-700 dark:text-white">
 
-    <li>
+  <li>
+    <%= link_to new_event_path,
+      class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2" do %>
+      <%= icon "calendar", class: "size-5 text-slate-500" %>
+      <span>New Event</span>
+    <% end %>
+  </li>
+
+  <li>
     <%= link_to "#",
       data: {
         controller: "railsui-modal",
@@ -22,12 +23,24 @@
         railsui_modal_url_value: new_resource_path,
         railsui_modal_name_value: "new_resource_modal"
       },
-      class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 block" do %>
-      <%= icon "plus-circle", class: "size-5 mr-2 text-slate-500" %>
-      New Resource
+      class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2" do %>
+      <%= icon "plus-circle", class: "size-5 text-slate-500" %>
+      <span>New Resource</span>
     <% end %>
   </li>
-  
-    
-  </ul>
+
+  <li>
+    <%= link_to "#",
+      data: {
+        controller: "railsui-modal",
+        action: "click->railsui-modal#open",
+        railsui_modal_url_value: new_message_path,
+        railsui_modal_name_value: "new_message_modal"
+      },
+      class: "px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2" do %>
+      <%= icon "envelope", class: "size-5 text-slate-500" %>
+      <span>New Message</span>
+    <% end %>
+  </li>
+</ul>
 </div>

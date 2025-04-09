@@ -1,0 +1,26 @@
+<%= form_with model: @message, url: messages_path, method: :post, data: { turbo_frame: "_top" }, class: "space-y-4" do |f| %>
+    <div>
+      <%= f.label :sender, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+      <%= f.text_field :sender, class: "form-input w-full" %>
+    </div>
+  
+    <div>
+      <%= f.label :recipient, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+      <%= f.text_field :recipient, class: "form-input w-full" %>
+    </div>
+  
+    <div>
+      <%= f.label :subject, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+      <%= f.text_field :subject, class: "form-input w-full" %>
+    </div>
+  
+    <div>
+      <%= f.label :body, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+      <%= f.text_area :body, rows: 4, class: "form-textarea w-full" %>
+    </div>
+  
+    <div class="flex justify-end">
+      <%= f.submit "Send Message", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  

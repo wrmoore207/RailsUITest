@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "messages/index"
+  get "messages/show"
+  get "messages/new"
+  get "messages/create"
+  get "messages/edit"
+  get "messages/update"
+  get "messages/destroy"
   get "resources/new"
   get "resources/create"
   resources :events
@@ -10,23 +17,18 @@ Rails.application.routes.draw do
   get "home", to: "pages#home"
 
   # Top-level calendar route
-  # get "calendar", to: "pages#calendar"
-  # resources :events
   get "calendar", to: "events#calendar"
   get "calendar/events_on_date", to: "events#on_date"
 
-
-
   # Messages Page
-  get "messages", to: "pages#messages"
+  resources :messages
 
   # Profile Page
   get "profile", to: "pages#profile"
 
   # Resource List
-  get 'resource_list', to: 'pages#resource_list', as: 'resource_list'
+  get "resource_list", to: "pages#resource_list", as: "resource_list"
   resources :resources
-
 
   # RailsUI engine (development only)
   if Rails.env.development?

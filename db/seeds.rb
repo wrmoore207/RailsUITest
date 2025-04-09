@@ -116,3 +116,28 @@ Event.create!([
   }
 ])
 
+Message.destroy_all
+
+Message.create!([
+  {
+    sender: "Christopher Robin",
+    recipient: "John Doe",
+    subject: "Exciting News: A new opportunity",
+    body: "We are excited to share with you the latest opportunity we have created...",
+    read: false
+  },
+  {
+    sender: "Emily Sands",
+    recipient: "John Doe",
+    subject: "Request for Additional Resources",
+    body: "I wanted to discuss the current workload of our team and the need for additional resources...",
+    read: true
+  },
+  {
+    sender: "Mathew Martinez",
+    recipient: "John Doe",
+    subject: "Thank You for Your Help!",
+    body: "I'm pleased to inform you that our development team has successfully completed the initial phase...",
+    read: true
+  }
+])
