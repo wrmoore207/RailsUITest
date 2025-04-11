@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # Top-level calendar route
   get "calendar", to: "events#calendar"
-  get "calendar/events_on_date", to: "events#on_date"
+  get 'calendar/events_on_date', to: 'events#events_on_date', as: :events_on_date
 
   # Messages Page
   resources :messages

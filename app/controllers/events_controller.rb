@@ -15,12 +15,25 @@ class EventsController < ApplicationController
     @year = params[:year]&.to_i || @today.year
   end
 
-  # GET /calendar/events_on_date
-  def on_date
-    date = Date.parse(params[:date])
-    @events = Event.where(date: date.all_day).order(:date)
-    render partial: "events/events_on_date", locals: { events: @events, date: date }
+  # app/controllers/events_controller.rb
+  def events_on_date
+    @date = Date.parse(params[:date])
+    @events = Event.where(date: @date)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          "day_event_modal",
+          partial: "events/day_event_modal",
+          locals: { events: @events, date: @date }
+        )
+      end
+      format.html do
+        render partial: "events/day_event_modal", locals: { events: @events, date: @date }
+      end
+    end
   end
+
 
   # GET /events/1 or /events/1.json
   def show
