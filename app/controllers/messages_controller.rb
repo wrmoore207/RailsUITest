@@ -1,7 +1,25 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.order(created_at: :desc)
+    @messages = Message.all
+  
+    # Search
+    if params[:search].present?
+      @messages = @messages.where("title ILIKE :q OR content ILIKE :q", q: "%#{params[:search]}%")
+    end
+  
+    # Filters
+    case params[:filter]
+    when "mine"
+      @messages = @messages.where(user: current_user)
+    when "commented"
+      @messages = @messages.joins(:comments).distinct
+    when "recent"
+      @messages = @messages.order(created_at: :desc)
+    else
+      @messages = @messages.order(created_at: :asc)
+    end
   end
+  
 
   def show
     @message = Message.find(params[:id])

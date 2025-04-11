@@ -3,5 +3,16 @@
   <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">From: <%= @message.sender %> • Sent <%= @message.created_at.strftime("%b %d, %Y") %></p>
   <p class="text-slate-700 dark:text-slate-300"><%= simple_format(@message.body) %></p>
 
+  <div class="mt-6">
+  <h3 class="font-medium text-slate-700 dark:text-slate-300">Comments</h3>
+
+  <%= render partial: "messages/form_comment", locals: { comment: Comment.new, message: @message } %>
+
+  <div class="mt-4 space-y-4">
+    <%= render partial: "messages/comment", collection: @message.comments, as: :comment %>
+  </div>
+</div>
+
+
   <%= link_to "← Back to Inbox", messages_path, class: "text-blue-600 hover:underline inline-block mt-6" %>
 </div>

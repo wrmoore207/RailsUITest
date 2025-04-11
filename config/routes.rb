@@ -21,7 +21,13 @@ Rails.application.routes.draw do
   get 'calendar/events_on_date', to: 'events#events_on_date', as: :events_on_date
 
   # Messages Page
-  resources :messages
+  resources :messages do
+    resources :comments, only: [:create]
+  end
+  resources :comments, only: [] do
+    resources :comments, only: [:create], as: :replies
+  end
+  
 
   # Profile Page
   get "profile", to: "pages#profile"

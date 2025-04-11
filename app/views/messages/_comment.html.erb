@@ -1,0 +1,19 @@
+<div class="border p-4 rounded-md bg-slate-50 dark:bg-slate-800">
+  <p class="text-sm font-medium text-slate-800 dark:text-white">
+    <%= comment.user.name %> 
+    <span class="text-slate-500 text-xs">• <%= comment.created_at.strftime('%b %d, %Y') %></span>
+  </p>
+
+  <p class="text-slate-700 dark:text-slate-300 mt-1"><%= comment.content %></p>
+
+  <!-- Reply form -->
+  <div class="ml-4">
+    <%= render partial: "messages/form_comment", locals: { comment: Comment.new(parent_id: comment.id), message: comment.message } %>
+  </div>
+
+  <% if comment.replies.any? %>
+    <div class="ml-4 mt-3 space-y-3">
+      <%= render partial: "messages/comment", collection: comment.replies, as: :comment %>
+    </div>
+  <% end %>
+</div>
