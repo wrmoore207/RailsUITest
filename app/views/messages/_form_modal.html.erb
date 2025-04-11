@@ -1,26 +1,52 @@
-<%= form_with model: @message, url: messages_path, method: :post, data: { turbo_frame: "_top" }, class: "space-y-4" do |f| %>
-    <div>
-      <%= f.label :sender, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
-      <%= f.text_field :sender, class: "form-input w-full" %>
-    </div>
-  
-    <div>
-      <%= f.label :recipient, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
-      <%= f.text_field :recipient, class: "form-input w-full" %>
-    </div>
-  
-    <div>
-      <%= f.label :subject, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
-      <%= f.text_field :subject, class: "form-input w-full" %>
-    </div>
-  
-    <div>
-      <%= f.label :body, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
-      <%= f.text_area :body, rows: 4, class: "form-textarea w-full" %>
-    </div>
-  
-    <div class="flex justify-end">
-      <%= f.submit "Send Message", class: "btn btn-primary" %>
+<turbo-frame id="new_message_modal">
+  <% if defined?(@message) && @message.present? %>
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      data-controller="railsui-modal"
+      data-railsui-modal-name-value="new_message_modal"
+      data-action="click->railsui-modal#outsideClick"
+    >
+      <div
+        class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700"
+        data-railsui-modal-target="content"
+        data-action="click->railsui-modal#stopPropagation"
+      >
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">New Message</h2>
+
+        <%= form_with model: @message, url: messages_path, method: :post, data: { turbo_frame: "new_message_modal" }, class: "space-y-4" do |f| %>
+          <div>
+            <%= f.label :sender, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+            <%= f.text_field :sender, class: "form-input w-full" %>
+          </div>
+
+          <div>
+            <%= f.label :recipient, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+            <%= f.text_field :recipient, class: "form-input w-full" %>
+          </div>
+
+          <div>
+            <%= f.label :subject, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+            <%= f.text_field :subject, class: "form-input w-full" %>
+          </div>
+
+          <div>
+            <%= f.label :body, class: "block text-sm font-medium text-slate-700 dark:text-white" %>
+            <%= f.text_area :body, rows: 4, class: "form-textarea w-full" %>
+          </div>
+
+          <div class="mt-6 flex justify-end gap-3">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-action="click->railsui-modal#close"
+            >Cancel</button>
+
+            <%= f.submit "Send Message", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
-  
+</turbo-frame>

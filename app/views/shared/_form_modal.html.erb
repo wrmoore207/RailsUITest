@@ -1,0 +1,7 @@
+<% raise "form_partial is NIL!" if form_partial.nil? %>
+<% raise "form_locals is NIL!" if form_locals.nil? %>
+
+
+<%= render partial: "shared/modal_wrapper", locals: { dom_id: "modal" } do %>
+  <%= render partial: form_partial, locals: form_locals %>
+<% end %>

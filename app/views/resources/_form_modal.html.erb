@@ -1,7 +1,18 @@
 <turbo-frame id="new_resource_modal">
   <% if defined?(resource) && resource.present? %>
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" data-controller="railsui-modal">
-      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700">
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      data-controller="railsui-modal"
+      data-railsui-modal-name-value="new_resource_modal"
+      data-action="click->railsui-modal#outsideClick"
+    >
+      <div
+        class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700"
+        data-railsui-modal-target="content"
+        data-action="click->railsui-modal#stopPropagation"
+      >
         <h2 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">New Resource</h2>
 
         <%= form_with model: resource, url: resources_path, method: :post, data: { turbo_frame: "new_resource_modal" } do |f| %>
@@ -33,7 +44,12 @@
           </div>
 
           <div class="mt-6 flex justify-end gap-3">
-            <%= button_to "Cancel", "#", class: "btn btn-secondary", data: { action: "click->railsui-modal#close" }, method: :get %>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-action="click->railsui-modal#close"
+            >Cancel</button>
+
             <%= f.submit "Create", class: "btn btn-primary" %>
           </div>
         <% end %>

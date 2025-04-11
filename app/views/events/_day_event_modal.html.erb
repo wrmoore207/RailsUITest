@@ -1,0 +1,32 @@
+<turbo-frame id="day_event_modal">
+  <% if events.present? || date.present? %>
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+      data-controller="railsui-modal"
+      data-railsui-modal-name-value="day_event_modal">
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700">
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">
+          Events for <%= date.strftime("%B %d, %Y") %>
+        </h2>
+
+        <% if events.any? %>
+          <ul class="space-y-4">
+            <% events.each do |event| %>
+              <li class="border-l-4 border-primary-500 pl-4">
+                <div class="font-bold"><%= event.title %></div>
+                <div class="text-sm opacity-80"><%= event.date.strftime("%I:%M %p") %></div>
+                <div class="text-sm italic opacity-60"><%= event.location %></div>
+                <p class="mt-1 text-sm"><%= event.description %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="italic text-sm text-slate-500">No events for this day.</p>
+        <% end %>
+
+        <div class="mt-6 text-right">
+          <button class="btn btn-light" data-action="click->railsui-modal#close">Close</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

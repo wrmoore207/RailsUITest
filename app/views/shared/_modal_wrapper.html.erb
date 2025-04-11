@@ -1,0 +1,13 @@
+<turbo-frame id="<%= dom_id %>">
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+       data-controller="railsui-modal"
+       data-railsui-modal-name-value="<%= dom_id %>">
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-lg w-full p-6 border dark:border-slate-700">
+      <%= yield %>
+
+      <div class="mt-6 text-right">
+        <button class="btn btn-light" data-action="click->railsui-modal#close">Close</button>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

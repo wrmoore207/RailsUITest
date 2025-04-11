@@ -1,0 +1,361 @@
+.
+├── .DS_Store
+├── .dockerignore
+├── .env
+├── .gitattributes
+├── .github
+│   ├── dependabot.yml
+│   └── workflows
+│       └── ci.yml
+├── .gitignore
+├── .kamal
+│   ├── hooks
+│   │   ├── docker-setup.sample
+│   │   ├── post-app-boot.sample
+│   │   ├── post-deploy.sample
+│   │   ├── post-proxy-reboot.sample
+│   │   ├── pre-app-boot.sample
+│   │   ├── pre-build.sample
+│   │   ├── pre-connect.sample
+│   │   ├── pre-deploy.sample
+│   │   └── pre-proxy-reboot.sample
+│   └── secrets
+├── .node-version
+├── .rubocop.yml
+├── .ruby-version
+├── Dockerfile
+├── Gemfile
+├── Gemfile.lock
+├── Procfile.dev
+├── README.md
+├── Rakefile
+├── app
+│   ├── .DS_Store
+│   ├── assets
+│   │   ├── builds
+│   │   │   ├── .keep
+│   │   │   ├── application.css
+│   │   │   └── application.js
+│   │   ├── images
+│   │   │   ├── .keep
+│   │   │   └── railsui
+│   │   │       ├── blog-1.png
+│   │   │       ├── blog-2.png
+│   │   │       ├── blog-3.png
+│   │   │       ├── brad-jost.png
+│   │   │       ├── challenges.png
+│   │   │       ├── checkboard-pattern.svg
+│   │   │       ├── customer-support.png
+│   │   │       ├── enabling-collaboration.png
+│   │   │       ├── fusion.png
+│   │   │       ├── hero-image.jpg
+│   │   │       ├── logo.svg
+│   │   │       ├── meta
+│   │   │       │   ├── android-chrome-192x192.png
+│   │   │       │   ├── android-chrome-512x512.png
+│   │   │       │   ├── apple-touch-icon.png
+│   │   │       │   ├── favicon-16x16.png
+│   │   │       │   ├── favicon-32x32.png
+│   │   │       │   ├── favicon.ico
+│   │   │       │   ├── favicon.svg
+│   │   │       │   ├── opengraph-mark.jpg
+│   │   │       │   └── opengraph.jpg
+│   │   │       ├── omniauth
+│   │   │       │   ├── facebook.svg
+│   │   │       │   ├── github.svg
+│   │   │       │   ├── google.svg
+│   │   │       │   ├── instagram.svg
+│   │   │       │   ├── linkedin.svg
+│   │   │       │   ├── x.svg
+│   │   │       │   └── youtube.svg
+│   │   │       ├── process.png
+│   │   │       ├── quote.svg
+│   │   │       └── social
+│   │   │           ├── facebook.png
+│   │   │           ├── facebook.svg
+│   │   │           ├── github.png
+│   │   │           ├── github.svg
+│   │   │           ├── instagram.png
+│   │   │           ├── instagram.svg
+│   │   │           ├── linkedin.png
+│   │   │           ├── linkedin.svg
+│   │   │           ├── x.png
+│   │   │           ├── x.svg
+│   │   │           ├── youtube.png
+│   │   │           └── youtube.svg
+│   │   └── stylesheets
+│   │       ├── actiontext.css
+│   │       ├── application.tailwind.css
+│   │       └── railsui
+│   │           ├── actiontext.css
+│   │           ├── buttons.css
+│   │           ├── forms.css
+│   │           ├── headings.css
+│   │           ├── navigation.css
+│   │           ├── tailwind.config.js
+│   │           └── theme.css
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   ├── auth0_controller.rb
+│   │   ├── concerns
+│   │   │   ├── .keep
+│   │   │   └── secured.rb
+│   │   ├── events_controller.rb
+│   │   ├── messages_controller.rb
+│   │   ├── pages_controller.rb
+│   │   ├── resources_controller.rb
+│   │   ├── rui
+│   │   │   └── pages_controller.rb
+│   │   └── sessions_controller.rb
+│   ├── helpers
+│   │   ├── application_helper.rb
+│   │   ├── events_helper.rb
+│   │   ├── messages_helper.rb
+│   │   └── resources_helper.rb
+│   ├── javascript
+│   │   ├── application.js
+│   │   ├── controllers
+│   │   │   ├── application.js
+│   │   │   ├── hello_controller.js
+│   │   │   ├── index.js
+│   │   │   └── railsui
+│   │   │       ├── combo_select_controller.js
+│   │   │       ├── dashboard_controller.js
+│   │   │       ├── index.js
+│   │   │       ├── nav_controller.js
+│   │   │       └── railsui_modal_controller.js
+│   │   └── modal_controller.js
+│   ├── jobs
+│   │   └── application_job.rb
+│   ├── mailers
+│   │   ├── application_mailer.rb
+│   │   └── railsui_mailer.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   │   └── .keep
+│   │   ├── event.rb
+│   │   ├── message.rb
+│   │   ├── resource.rb
+│   │   └── user.rb
+│   └── views
+│       ├── .DS_Store
+│       ├── active_storage
+│       │   └── blobs
+│       │       └── _blob.html.erb
+│       ├── events
+│       │   ├── _day_event_modal.html.erb
+│       │   ├── _event.html.erb
+│       │   ├── _event.json.jbuilder
+│       │   ├── _event_form.html.erb
+│       │   ├── _events_on_date.html.erb
+│       │   ├── _form.html.erb
+│       │   ├── _form_modal.html.erb
+│       │   ├── calendar.html.erb
+│       │   ├── create.turbo_stream.erb
+│       │   ├── edit.html.erb
+│       │   ├── index.html.erb
+│       │   ├── index.json.jbuilder
+│       │   ├── new.html.erb
+│       │   ├── show.html.erb
+│       │   └── show.json.jbuilder
+│       ├── layouts
+│       │   ├── action_text
+│       │   │   └── contents
+│       │   │       └── _content.html.erb
+│       │   ├── application.html.erb
+│       │   ├── mailer.html.erb
+│       │   ├── mailer.text.erb
+│       │   └── rui
+│       │       ├── railsui.html.erb
+│       │       ├── railsui_admin.html.erb
+│       │       └── railsui_mailer.html.erb
+│       ├── messages
+│       │   ├── _form_modal.html.erb
+│       │   ├── _message_form.html.erb
+│       │   ├── create.html.erb
+│       │   ├── create.turbo_stream.erb
+│       │   ├── destroy.html.erb
+│       │   ├── edit.html.erb
+│       │   ├── index.html.erb
+│       │   ├── new.html.erb
+│       │   ├── show.html.erb
+│       │   └── update.html.erb
+│       ├── nav_bar
+│       │   ├── _create_dropdown.html.erb
+│       │   ├── _nav.html.erb
+│       │   ├── _nav_links.html.erb
+│       │   └── _nav_menu.html.erb
+│       ├── pages
+│       │   ├── home.html.erb
+│       │   ├── profile.html.erb
+│       │   └── resource_list.html.erb
+│       ├── pwa
+│       │   ├── manifest.json.erb
+│       │   └── service-worker.js
+│       ├── railsui_mailer
+│       │   ├── minimal.html.erb
+│       │   ├── minimal.text.erb
+│       │   ├── promotion.html.erb
+│       │   ├── promotion.text.erb
+│       │   ├── transactional.html.erb
+│       │   └── transactional.text.erb
+│       ├── resources
+│       │   ├── _form_modal.html.erb
+│       │   ├── _resource_form.html.erb
+│       │   ├── _resource_row.html.erb
+│       │   ├── create.html.erb
+│       │   └── create.turbo_stream.erb
+│       ├── rui
+│       │   ├── pages
+│       │   │   ├── about.html.erb
+│       │   │   ├── activity.html.erb
+│       │   │   ├── assignments.html.erb
+│       │   │   ├── billing.html.erb
+│       │   │   ├── calendar.html.erb
+│       │   │   ├── dashboard.html.erb
+│       │   │   ├── integrations.html.erb
+│       │   │   ├── message.html.erb
+│       │   │   ├── messages.html.erb
+│       │   │   ├── notifications.html.erb
+│       │   │   ├── people.html.erb
+│       │   │   ├── pricing.html.erb
+│       │   │   ├── profile.html.erb
+│       │   │   ├── project.html.erb
+│       │   │   ├── projects.html.erb
+│       │   │   ├── settings.html.erb
+│       │   │   └── team.html.erb
+│       │   └── shared
+│       │       ├── _email_action.html.erb
+│       │       ├── _email_callout.html.erb
+│       │       ├── _email_spacer.html.erb
+│       │       ├── _error_messages.html.erb
+│       │       ├── _flash.html.erb
+│       │       ├── _fonts.html.erb
+│       │       ├── _footer.html.erb
+│       │       ├── _meta.html.erb
+│       │       ├── _nav.html.erb
+│       │       ├── _nav_links.html.erb
+│       │       ├── _nav_menu.html.erb
+│       │       ├── _railsui_head.html.erb
+│       │       ├── _search_overlay.html.erb
+│       │       └── admin
+│       │           ├── _create_dropdown.html.erb
+│       │           ├── _nav.html.erb
+│       │           ├── _nav_links.html.erb
+│       │           └── _settings_nav.html.erb
+│       └── shared
+│           ├── _form_modal.html.erb
+│           └── _modal_wrapper.html.erb
+├── bin
+│   ├── brakeman
+│   ├── bundle
+│   ├── dev
+│   ├── docker-entrypoint
+│   ├── jobs
+│   ├── kamal
+│   ├── rails
+│   ├── rake
+│   ├── rubocop
+│   ├── setup
+│   └── thrust
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── cable.yml
+│   ├── cache.yml
+│   ├── credentials.yml.enc
+│   ├── database.yml
+│   ├── deploy.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── assets.rb
+│   │   ├── auth0.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   ├── omniauth.rb
+│   │   └── railsui_icon.rb
+│   ├── locales
+│   │   └── en.yml
+│   ├── master.key
+│   ├── puma.rb
+│   ├── queue.yml
+│   ├── railsui.yml
+│   ├── recurring.yml
+│   ├── routes.rb
+│   └── storage.yml
+├── config.ru
+├── db
+│   ├── cable_schema.rb
+│   ├── cache_schema.rb
+│   ├── migrate
+│   │   ├── 20250407175617_create_active_storage_tables.active_storage.rb
+│   │   ├── 20250407175618_create_action_text_tables.action_text.rb
+│   │   ├── 20250407231603_create_events.rb
+│   │   ├── 20250408172411_create_resources.rb
+│   │   └── 20250409132459_create_messages.rb
+│   ├── queue_schema.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── file_structure.txt
+├── lib
+│   └── tasks
+│       └── .keep
+├── package-lock.json
+├── package.json
+├── public
+│   ├── 400.html
+│   ├── 404.html
+│   ├── 406-unsupported-browser.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── icon.png
+│   ├── icon.svg
+│   └── robots.txt
+├── script
+│   └── .keep
+├── storage
+│   ├── .keep
+│   └── development.sqlite3
+├── structure.txt
+└── test
+    ├── application_system_test_case.rb
+    ├── controllers
+    │   ├── .keep
+    │   ├── auth0_controller_test.rb
+    │   ├── events_controller_test.rb
+    │   ├── messages_controller_test.rb
+    │   └── resources_controller_test.rb
+    ├── fixtures
+    │   ├── action_text
+    │   │   └── rich_texts.yml
+    │   ├── events.yml
+    │   ├── files
+    │   │   └── .keep
+    │   ├── messages.yml
+    │   └── resources.yml
+    ├── helpers
+    │   └── .keep
+    ├── integration
+    │   └── .keep
+    ├── mailers
+    │   ├── .keep
+    │   ├── previews
+    │   │   └── railsui_mailer_preview.rb
+    │   └── railsui_mailer_test.rb
+    ├── models
+    │   ├── .keep
+    │   ├── event_test.rb
+    │   ├── message_test.rb
+    │   └── resource_test.rb
+    ├── system
+    │   ├── .keep
+    │   └── events_test.rb
+    └── test_helper.rb
+
+68 directories, 291 files

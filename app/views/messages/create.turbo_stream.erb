@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "message_list", partial: "messages/message", locals: { message: @message } %>
+<%= turbo_stream.update "new_message_modal", "" %>
