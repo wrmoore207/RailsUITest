@@ -90,31 +90,23 @@
             <% is_today = (date == today) %>
             <% events_today = events_by_day[date] || [] %>
 
-            <% calendar_days.each do |date| %>
-              <% is_current_month = (date.month == @month) %>
-              <% is_today = (date == today) %>
-              <% events_today = events_by_day[date] || [] %>
-            
-              <div
-                data-controller="railsui-modal"
-                data-action="click->railsui-modal#open"
-                data-railsui-modal-url-value="<%= url_for(controller: 'events', action: 'events_on_date', date: date.iso8601, format: :turbo_stream) %>"
-                data-railsui-modal-name-value="day_event_modal"
-                class="<%= is_current_month ? 'bg-white dark:bg-slate-800' : 'bg-slate-50 dark:bg-slate-900' %> 
-                       py-1.5 text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700 
-                       focus:z-10 relative cursor-pointer group text-sm text-center">
-            
-                <time datetime="<%= date.iso8601 %>" class="ml-auto mr-2 flex sm:size-14 size-10 items-start justify-end rounded-full <%= is_today ? 'bg-slate-900 text-white font-bold p-1' : '' %>">
-                  <%= date.day %>
-                </time>
-            
-                <% if events_today.any? %>
-                  <span class="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-300"></span>
-                <% end %>
-              </div>
-            <% end %>
-            
-            </button>
+            <div
+              data-controller="railsui-modal"
+              data-action="click->railsui-modal#open"
+              data-railsui-modal-url-value="<%= events_on_date_path(date: date.iso8601, format: :turbo_stream) %>"
+              data-railsui-modal-name-value="day_event_modal"
+              class="<%= is_current_month ? 'bg-white dark:bg-slate-800' : 'bg-slate-50 dark:bg-slate-900' %> 
+                     py-1.5 text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-700 
+                     focus:z-10 relative cursor-pointer group text-sm text-center">
+
+              <time datetime="<%= date.iso8601 %>" class="ml-auto mr-2 flex sm:size-14 size-10 items-start justify-end rounded-full <%= is_today ? 'bg-slate-900 text-white font-bold p-1' : '' %>">
+                <%= date.day %>
+              </time>
+
+              <% if events_today.any? %>
+                <span class="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-300"></span>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
