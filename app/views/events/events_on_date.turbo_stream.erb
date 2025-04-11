@@ -1,0 +1,6 @@
+<!-- app/views/events/events_on_date.turbo_stream.erb -->
+<turbo-stream action="replace" target="day_event_modal">
+  <template>
+    <%= render partial: "events/day_event_modal", locals: { events: @events, date: @date } %>
+  </template>
+</turbo-stream>

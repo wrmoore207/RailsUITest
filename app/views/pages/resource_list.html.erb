@@ -1,4 +1,4 @@
-<%# Page header with nav bar %>
+ <%# Page header with nav bar %>
 <% content_for :header do %>
   <%= render "nav_bar/nav", { header_title: "Resource List" } %>
 <% end %>
@@ -86,8 +86,12 @@
         <% @resources.each do |resource| %>
           <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
             <td class="px-6 py-4 font-medium text-slate-800 dark:text-slate-200"><%= resource.name %></td>
-            <td class="px-6 py-4 text-slate-600 dark:text-slate-400"><%= resource.posted_at.strftime("%b %d, %Y") %></td>
-            <td class="px-6 py-4 text-slate-600 dark:text-slate-400"><%= resource.category %></td>
+            <td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+            <%= resource.posted_at&.strftime("%b %d, %Y") || "N/A" %>
+          </td>
+            <td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+              <%= resource.category || "N/A" %>
+            </td>
             <td class="px-6 py-4 text-slate-600 dark:text-slate-400"><%= truncate(resource.description, length: 80) %></td>
             <td class="px-6 py-4">
               <% if resource.fulfilled? %>
