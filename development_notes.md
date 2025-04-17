@@ -8,6 +8,8 @@ The ESOL Hub is a Ruby on Rails project that follows an MVC architecture. The fr
 
 The navigation bar is a static component rendered on every page. It includes a "Create" dropdown button for quick access to creating new Events, Resources, or Messages. This functionality uses Turbo Streams and RailsUI modals for a seamless user experience without full-page reloads.
 
+![Universal Create Button](create_button.png)
+
 ### Future Developments
 - Add additional create options as new features are added.
 - Implement role-based access control (RBAC) to restrict create options based on user permissions.
@@ -16,11 +18,14 @@ The navigation bar is a static component rendered on every page. It includes a "
 
 ## About the Calendar Page
 
+![Calendar Page](calendar_img.png)
 ### Model
 **Event model**
 - **Attributes:** `title`, `description`, `location`, `date`, `start_time`, `end_time`, `active`
 - **Validations:** Basic presence validations
 - **Scopes:** `active`, `upcoming`
+
+![Create New Event](event_modal.png)
 
 ### Controller
 **EventsController**
@@ -44,10 +49,14 @@ The navigation bar is a static component rendered on every page. It includes a "
 
 ## About the Resource List
 
+![Resource List Page](resource_list.png)
+
 ### Model
 **Resource model**
 - **Attributes:** `title`, `description`, `category`, `posted_on`, `fulfilled`, `active`
 - **Default values:** `posted_on` is set to today automatically; `active` defaults to true
+
+![New Resource](resourceModal.png)
 
 ### Controller
 **ResourcesController**
@@ -70,10 +79,14 @@ The navigation bar is a static component rendered on every page. It includes a "
 
 ## About the Messages Page
 
+![Messages Page](messages_page.png)
+
 ### Model
 **Message model**
 - **Attributes:** `title`, `content`, `user_id`
 - **Associations:** Belongs to User
+
+![New Message Modal](messageModal.png)
 
 ### Controller
 **MessagesController**
