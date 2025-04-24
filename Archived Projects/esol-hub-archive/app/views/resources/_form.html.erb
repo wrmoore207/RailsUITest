@@ -1,0 +1,27 @@
+<%= form_with model: resource, class: "max-w-md mx-auto space-y-6" do |form| %>
+  <% if resource.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+      <h2 class="font-bold mb-2"><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+      <ul class="list-disc pl-5">
+        <% resource.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col">
+    <%= form.label :name, class: "mb-1 text-gray-700 font-semibold" %>
+    <%= form.text_field :name, class: "border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+  </div>
+  
+  <div class="flex flex-col">
+    <%= form.label :category, class: "mb-1 text-gray-700 font-semibold" %>
+    <%= form.text_field :category, class: "border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    <p class="text-sm text-gray-500 mt-1">Example categories: Furniture, Electronics, Books, Clothing, etc.</p>
+  </div>
+  
+  <div>
+    <%= form.submit "Submit", class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200" %>
+  </div>
+<% end %>

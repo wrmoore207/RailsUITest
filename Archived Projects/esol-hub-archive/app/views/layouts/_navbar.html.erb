@@ -1,0 +1,21 @@
+<!-- app/views/shared/_navbar.html.erb -->
+<nav class="flex justify-between items-center p-4 bg-gray-800 text-white">
+  <!-- Left side: Clickable Logo and App Name -->
+  <div class="flex items-center">
+    <%= link_to root_path, class: "flex items-center" do %>
+      <%= image_tag "class.svg", alt: "App Logo", class: "h-8 w-8 mr-2" %>
+      <span class="text-xl font-bold">ESOL Hub</span>
+    <% end %>
+  </div>
+  <!-- Right side: Admin Button and Login/Logout Buttons -->
+  <div class="flex">
+    <% if session[:userinfo].present? && session[:userinfo][:admin] %>
+      <%= link_to "Madmin", "/madmin", class: "px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 mr-2" %>
+    <% end %>
+    <% if session[:userinfo].present? %>
+      <%= button_to "Logout", "/auth/logout", method: :get, data: { turbo: false }, class: "px-4 py-2 bg-red-600 rounded hover:bg-red-700" %>
+    <% else %>
+      <%= button_to "Login", "/auth/auth0", method: :post, data: { turbo: false }, class: "px-4 py-2 bg-green-600 rounded hover:bg-green-700" %>
+    <% end %>
+  </div>
+</nav>

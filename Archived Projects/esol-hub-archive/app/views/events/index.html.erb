@@ -1,0 +1,22 @@
+<!-- app/views/events/index.html.erb -->
+<div class="container mx-auto p-8">
+  <h1 class="text-3xl font-bold mb-6">Event Calendar</h1>
+
+  <%= month_calendar events: @events, class: "w-full table-fixed border-collapse" do |date, events| %>
+    <div class="border border-gray-300 p-2 h-40 overflow-auto">
+      <div class="font-bold text-center mb-2"><%= date.day %></div>
+      <% events.each do |event| %>
+        <div class="bg-blue-200 text-blue-800 p-1 rounded mb-1 text-sm">
+          <%= link_to event.name, event, class: "hover:underline" %>
+          <small class="block text-gray-600">
+            <%= event.start_time.strftime('%I:%M %p') %>
+          </small>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mt-6">
+    <%= link_to "New Event", new_event_path, class: "inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>
